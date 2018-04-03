@@ -1,7 +1,14 @@
 server:
-  port: 8080
-
+    port: 8080
+    context-path: /myapp/ #统一为访问的url加上一个前缀
 spring:
+    name: myapp
+    boot:
+        admin:
+          client:
+              prefer-ip: true # 解决windows下运行时无法识别主机名的问题
+              name: monitor-client
+          url: http://localhost:64000/svc-monitor # 向服务端注册的地址
     thymeleaf:
         mode: LEGACYHTML5
         cache: false
@@ -27,18 +34,28 @@ spring:
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
 mybatis:
-  mapper-locations: classpath:mapping/*.xml,classpath:mapping/ext/*.xml
-  type-aliases-package: com.jxm.model
+    mapper-locations: classpath:mapping/*.xml,classpath:mapping/ext/*.xml
+    type-aliases-package: com.jxm.model
 logging:
-  level:
-    com.jxm: debug
-  pattern:
-    console: "%date{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
-  path: /var/logs          # 在/var/logs目录下生成spring.log文件
-  file: /var/logs/boot.log # 在/var/logs目录下生成boot.log文件
+    level:
+      com.jxm: debug
+    pattern:
+      console: "%date{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    path: /var/logs          # 在/var/logs目录下生成spring.log文件
+    file: /var/logs/boot.log # 在/var/logs目录下生成boot.log文件
 #pagehelper分页插件
 pagehelper:
     helperDialect: mysql
     reasonable: true
     supportMethodsArguments: true
     params: count=countSql
+management:
+#    port: 65001
+    security:
+      enabled: false # spring-boot 1.5.2之后严格执行安全策略，所以需要配置这个为false
+info: #定义各种额外的详情给服务端显示
+  app:
+    name: "@project.name@" #从pom.xml中获取
+    description: "@project.description@"
+    version: "@project.version@"
+    spring-boot-version: "@project.parent.version@"

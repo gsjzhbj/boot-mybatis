@@ -20,7 +20,11 @@ import java.util.Map;
 public class IndexController {
     @Autowired
     UserService userService;
-
+    @RequestMapping
+    public String root(Model model){
+        model.addAttribute("loginName","root");
+        return "/index";
+    }
     @RequestMapping("/reload")
     public String reload(){
         return "reload";
