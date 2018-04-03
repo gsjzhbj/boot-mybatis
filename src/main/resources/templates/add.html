@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>测试添加</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/default.css}"/>
+</head>
+<body>
+<img th:src="@{/image/Desert.jpg}" width="80" height="80"/>
+<hr/>
+<div>
+    <p>t
+</div>
+<form action="/user/add" method="post">
+    <div>
+        <ul>
+            <li>用户名：</li>
+            <li><input th:value="${user.userName}" name="userName" value=""/></li>
+        </ul>
+        <ul>
+            <li>密码：</li>
+            <li><input th:value="${user.password}" name="password" value="" type="password"/></li>
+        </ul>
+        <ul>
+            <li>电话：</li>
+            <li><input th:value="${user.phone}" name="phone" value=""/></li>
+        </ul>
+    </div>
+    <div>
+        <ul>
+            <li></li>
+            <li><button   type="submit"  style="height: 30px;width: 120px">提交</button></li>
+        </ul>
+    </div>
+</form>
+
+
+</body>
+</html>

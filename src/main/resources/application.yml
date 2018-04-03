@@ -2,6 +2,9 @@ server:
   port: 8080
 
 spring:
+    thymeleaf:
+        mode: LEGACYHTML5
+        cache: false
     datasource:
         name: test
         url: jdbc:mysql://127.0.0.1:3306/boot
@@ -34,8 +37,8 @@ logging:
   path: /var/logs          # 在/var/logs目录下生成spring.log文件
   file: /var/logs/boot.log # 在/var/logs目录下生成boot.log文件
 #pagehelper分页插件
-#pagehelper:
-#    helperDialect: mysql
-#    reasonable: true
-#    supportMethodsArguments: true
-#    params: count=countSql
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql

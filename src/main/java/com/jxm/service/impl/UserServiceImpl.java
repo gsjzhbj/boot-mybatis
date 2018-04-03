@@ -1,5 +1,6 @@
 package com.jxm.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.jxm.mapper.UserMapper;
 import com.jxm.mapper.ext.UserExtMapper;
 import com.jxm.model.User;
@@ -17,11 +18,17 @@ public class UserServiceImpl implements UserService{
     @Autowired
     UserExtMapper userMapper;
     @Override
-    public Object getUsers() {
+    public Object getUsers(int pageNo,int pageSize) {
+        PageHelper.startPage(pageNo, pageSize);
         return userMapper.selectUsers();
     }
     public Object getUserById(Integer id){
         return userMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void add(User user) {
+        userMapper.insert(user);
     }
     /*
     * 这个方法中用到了我们开头配置依赖的分页插件pagehelper

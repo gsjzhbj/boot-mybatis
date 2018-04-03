@@ -8,6 +8,6 @@
     <result column="phone" jdbcType="VARCHAR" property="phone" />
   </resultMap>
   <select id="selectUsers" resultMap="BaseExtResultMap">
-    SELECT * FROM t_user
+    SELECT * FROM t_user ORDER BY TIME DESC
   </select>
 </mapper>
